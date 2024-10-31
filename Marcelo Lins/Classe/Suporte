@@ -1,0 +1,25 @@
+package Personagem.Roles.Suporte;
+
+import Personagem.Roles.*;
+import Personagem.Roles.Suporte.Subclasse.*;
+public class Suporte extends Roles {
+    private Sage sage;
+    private Clerigo clerigo;
+    private WhiteMage whitemage;
+
+    public Suporte(Sage sage, Clerigo clerigo, WhiteMage whitemage){
+        super("");
+        this.sage = sage;
+        this.clerigo = clerigo;
+        this.whitemage = whitemage;
+    }
+
+    public void habilidadePassiva() {
+        System.out.println(getNome() + "");
+    }
+
+    public void atributoPassivo() {
+        System.out.println(getNome() + "");
+    }
+}
+
