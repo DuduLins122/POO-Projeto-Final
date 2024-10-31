@@ -1,0 +1,65 @@
+package Personagem.Roles.Mago.Subclasse;
+
+import Personagem.Roles.Mago.Mago;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class BlackMage extends Mago {
+    private int vida;
+    private int mana;
+    private int defesa;
+
+    public BlackMage(BlackMage blackMage, Necromancer necromancer, Summoner summoner, int vida, int mana, int defesa) {
+        super(blackMage, summoner, necromancer);
+        this.vida = vida;
+        this.mana = mana;
+        this.defesa = defesa;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public int getDefesa() {
+        return defesa;
+    }
+
+    public void setDefesa(int defesa) {
+        this.defesa = defesa;
+    }
+
+    public String lerLore(String filePath) {
+        StringBuilder lore = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lore.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler a lore do personagem: " + e.getMessage());
+        }
+        return lore.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "BlackMage{" +
+                "vida=" + vida +
+                ", mana=" + mana +
+                ", defesa=" + defesa +
+                '}';
+    }
+}
