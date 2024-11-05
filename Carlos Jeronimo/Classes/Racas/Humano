@@ -1,0 +1,18 @@
+package Personagem.Racas.Humano;
+
+import Personagem.PassivaRaca;
+import Personagem.Racas.*;
+
+
+public class Humano extends Raca implements PassivaRaca {
+
+    public Humano() {
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+
+}
