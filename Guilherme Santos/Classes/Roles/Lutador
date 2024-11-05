@@ -25,7 +25,7 @@ public class Lutador extends Roles implements PassivasRole {
 
     @Override
     public void habilidadePassivaRole() {
-        System.out.println("a");
+        System.out.println("Ao se esquivar de um ataque recebe 10% a mais de Vida e Força");
     }
 
     @Override
