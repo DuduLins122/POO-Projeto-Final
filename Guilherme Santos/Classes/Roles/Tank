@@ -1,0 +1,37 @@
+package Personagem.Roles.Tank;
+
+import Personagem.Atributo;
+import Personagem.Roles.*;
+import Personagem.Roles.Tank.Subclasse.*;
+import Personagem.PassivasRole;
+
+public class Tank extends Roles implements PassivasRole {
+    private Paladino paladino;
+    private Warrior warrior;
+    private Barbaro barbaro;
+    private Atributo atributo;
+
+    public Tank (Paladino paladino, Barbaro barbaro, Warrior warrior, Atributo atributo){
+        super("");
+        this.paladino = paladino;
+        this.barbaro = barbaro;
+        this.warrior = warrior;
+        this.atributo = atributo;
+    }
+
+    public Tank(){
+        super("");
+    }
+
+    @Override
+    public void habilidadePassivaRole() {
+        System.out.println("a");
+    }
+
+    @Override
+    public void atributoPassivoRole() {
+        atributo.setDefesa(atributo.getDefesa()+15);
+        atributo.setVida(atributo.getVida()+100);
+    }
+
+}
