@@ -1,36 +1,87 @@
-package Personagem.Roles;
+package Personagem;
 
-import Personagem.Personagem;
-import Personagem.Roles.Assassino.Assassino;
-import Personagem.Roles.Atirador.Atirador;
-import Personagem.Roles.Lutador.Lutador;
-import Personagem.Roles.Mago.Mago;
-import Personagem.Roles.Suporte.Suporte;
-import Personagem.Roles.Tank.Tank;
+public abstract class Atributo extends Personagem implements exibirAtri {
+    private int forca;
+    private int destreza;
+    private int inteligencia;
+    private int vida;
+    private int mana;
+    private int defesa;
+    private int pontosRestantes;
 
-public abstract class Roles extends Personagem {
-    private Tank tank;
-    private Mago mago;
-    private Atirador atirador;
-    private Assassino assassino;
-    private Suporte suporte;
-    private Lutador lutador;
 
-    public Roles(String nome, Tank tank, Mago mago, Atirador atirador, Assassino assassino, Suporte suporte, Lutador lutador) {
-        super("");
-        this.atirador = atirador;
-        this.assassino = assassino;
-        this.lutador = lutador;
-        this.mago = mago;
-        this.suporte = suporte;
-        this.tank = tank;
+    public Atributo(String nome) {
+        super(nome);
+        this.forca = 10;
+        this.destreza = 10;
+        this.inteligencia = 10;
+        this.vida = 200;
+        this.mana = 150;
+        this.defesa = 10;
+        this.pontosRestantes = 3;
+    }
+
+    @Override
+    public void exibirAtributos() {
+        System.out.println("Atributos de " + getNome() + ":");
+        System.out.println("Força: " + this.forca);
+        System.out.println("Destreza: " + this.destreza);
+        System.out.println("Inteligência: " + this.inteligencia);
+        System.out.println("Vida: " + this.vida);
+        System.out.println("Mana: " + this.mana);
+        System.out.println("Defesa: " + this.defesa);
+    }
+
+    public abstract void distribuirPontos(int forcaPontos, int destrezaPontos, int inteligenciaPontos, int defesaPontos, int vidaPontos, int manaPontos);
+
+    public int getDestreza() {
+        return destreza;
+    }
+
+    public int getForca() {
+        return forca;
+    }
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
+    public int getDefesa() {
+        return defesa;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+    public int getPontosRestantes() {
+        return pontosRestantes;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
 
-    public Roles(String nome) {
-        super("");
+    public void setDefesa(int defesa) {
+        this.defesa = defesa;
     }
+    public void setDestreza(int destreza) {
+        this.destreza = destreza;
+    }
+
+    public void setForca(int forca) {
+        this.forca = forca;
+    }
+
+    public void setInteligencia(int inteligencia) {
+        this.inteligencia = inteligencia;
+    }
+
 }
-
-
-
