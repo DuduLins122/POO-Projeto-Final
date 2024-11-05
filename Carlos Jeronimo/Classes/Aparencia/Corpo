@@ -1,0 +1,17 @@
+package Personagem.Aparencia.Corpo;
+
+import Personagem.Aparencia.Aparencia;
+
+public class Corpo extends Aparencia {
+
+    public Corpo(){
+        super();
+    }
+
+    @Override
+    public void mudarAparencia() {
+        setCorpo(getCorpo());
+    }
+
+
+}
