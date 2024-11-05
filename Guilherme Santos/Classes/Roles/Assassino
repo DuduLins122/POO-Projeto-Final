@@ -26,7 +26,7 @@ public class Assassino extends Roles implements PassivasRole {
 
     @Override
     public void habilidadePassivaRole() {
-        System.out.println("a");
+        System.out.println("Ataques furtivos rececem 20% de dano crítico.");
     }
 
     @Override
