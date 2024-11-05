@@ -7,11 +7,28 @@ public class Corpo extends Aparencia {
     public Corpo(){
         super();
     }
+    private String tipoRoupa;
+    private String cor;
+    public Corpo(String tipoRoupa, String cor) {
+        this.tipoRoupa = tipoRoupa;
+        this.cor = cor;
+
+    }
 
     @Override
     public void mudarAparencia() {
-        setCorpo(getCorpo());
+        System.out.println("Mudando aparência de " + getNome() + "...");
+        this.tipoRoupa = "";
+        this.cor = "";
+        System.out.println("Aparência modificada: " + getNome() + " agora usa " + tipoRoupa + " e é da cor " + cor);
     }
 
-
+    public String getTipoRoupa() {
+        return tipoRoupa;
+    }
+    public String getCor() {
+        return cor;
+    }
 }
+
+
