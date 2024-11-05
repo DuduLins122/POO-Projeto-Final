@@ -5,8 +5,7 @@ import Personagem.PassivasRole;
 import Personagem.Roles.*;
 import Personagem.Roles.Atirador.Subclasse.*;
 
-
-public class Atirador extends Roles implements PassivasRole{
+public class Atirador extends Roles implements PassivasRole {
     private Gunner gunner;
     private Hunter hunter;
     private DeadEye deadeye;
@@ -24,10 +23,9 @@ public class Atirador extends Roles implements PassivasRole{
         super("");
     }
 
-
     @Override
-    public void habilidadePassivaRole() {
-        System.out.println("A cada 4 ataques o 5° sera fortalecido.");
+    public double habilidadePassivaRole(double valorAtual) {
+        return valorAtual * 1.3;
     }
 
     @Override
@@ -36,6 +34,8 @@ public class Atirador extends Roles implements PassivasRole{
         atributo.setDestreza(atributo.getDestreza() + 8);
     }
 
+    @Override
+    public void descricaoHabilidadePassiva() {
+        System.out.println("A cada 4 ataques, o 5° será fortalecido em 30%.");
+    }
 }
-
-
