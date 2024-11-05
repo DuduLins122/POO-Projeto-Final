@@ -1,1 +1,16 @@
+package Personagem.Racas.Anao;
 
+import Personagem.Racas.Raca;
+import Personagem.PassivaRaca;
+
+public class Anao extends Raca implements PassivaRaca{
+
+    public Anao(){
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+}
