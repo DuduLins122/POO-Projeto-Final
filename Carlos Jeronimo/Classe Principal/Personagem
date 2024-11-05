@@ -1,24 +1,25 @@
 package Personagem;
 
 import Personagem.Roles.Roles;
+import Personagem.Racas.Raca;
 
-public abstract class Personagem implements habilidadeUnica {
+public abstract class Personagem {
     private String nome;
     private Roles roles;
     private Raca raca;
     private Aparencia aparencia;
     private Atributo atributo;
 
-    public Personagem(String nome) {
-        this.nome = nome;
-    }
 
-    public Personagem(String nome, Roles roles, Raca raca, Aparencia aparencia, Atributo atributo) {
-        this.nome = nome;
+    public Personagem(Roles roles, Raca raca, Aparencia aparencia, Atributo atributo) {
         this.roles = roles;
         this.raca = raca;
         this.aparencia = aparencia;
         this.atributo = atributo;
+    }
+
+    public Personagem(String nome) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -41,10 +42,4 @@ public abstract class Personagem implements habilidadeUnica {
         return atributo;
     }
 
-    public abstract void habilidadePassiva();
-
-    public abstract void atributoPassivo();
-
-
 }
-
