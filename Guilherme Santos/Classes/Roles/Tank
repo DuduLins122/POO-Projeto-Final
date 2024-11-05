@@ -24,14 +24,18 @@ public class Tank extends Roles implements PassivasRole {
     }
 
     @Override
-    public void habilidadePassivaRole() {
-        System.out.println("Ao entrar em confronto com 1 ou mais inimigos recebe 20% a mais de Defesa por 5 segundos.");
+    public double habilidadePassivaRole(double valorAtual) {
+        return valorAtual * 1.2;
     }
 
     @Override
     public void atributoPassivoRole() {
-        atributo.setDefesa(atributo.getDefesa()+15);
-        atributo.setVida(atributo.getVida()+100);
+        atributo.setDefesa(atributo.getDefesa() + 15);
+        atributo.setVida(atributo.getVida() + 100);
     }
 
+    @Override
+    public void descricaoHabilidadePassiva() {
+        System.out.println("Ao entrar em confronto com 1 ou mais inimigos, recebe 20% a mais de Defesa e vida por 5 segundos.");
+    }
 }
