@@ -25,7 +25,7 @@ public class Suporte extends Roles implements PassivasRole {
 
     @Override
     public void habilidadePassivaRole() {
-        System.out.println("a");
+        System.out.println("Escudos e curas aumentam em 10% se estiver parado.");
     }
 
     @Override
