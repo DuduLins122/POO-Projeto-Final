@@ -1,0 +1,16 @@
+package Personagem.Racas.Elfo;
+
+import Personagem.Racas.Raca;
+import Personagem.PassivaRaca;
+
+public class Elfo extends Raca implements PassivaRaca {
+
+    public Elfo() {
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+}
