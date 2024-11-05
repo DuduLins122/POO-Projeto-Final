@@ -1,0 +1,37 @@
+package Personagem.Roles.Assassino;
+
+import Personagem.PassivasRole;
+import Personagem.Roles.Assassino.Subclasse.*;
+import Personagem.Roles.*;
+import Personagem.Atributo;
+
+public class Assassino extends Roles implements PassivasRole {
+    private Samurai samurai;
+    private Reaper reaper;
+    private Viper viper;
+    private Atributo atributo;
+
+    public Assassino(Samurai samurai, Reaper reaper, Viper viper, Atributo atributo) {
+        super("");
+        this.samurai = samurai;
+        this.reaper = reaper;
+        this.viper = viper;
+        this.atributo = atributo;
+    }
+
+    public Assassino() {
+        super("");
+    }
+
+
+    @Override
+    public void habilidadePassivaRole() {
+        System.out.println("a");
+    }
+
+    @Override
+    public void atributoPassivoRole() {
+        atributo.setForca(atributo.getForca() + 5);
+        atributo.setDestreza(atributo.getDestreza() + 10);
+    }
+}
