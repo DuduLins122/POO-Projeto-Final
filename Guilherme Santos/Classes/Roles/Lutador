@@ -1,0 +1,38 @@
+package Personagem.Roles.Lutador;
+
+import Personagem.Atributo;
+import Personagem.PassivasRole;
+import Personagem.Roles.*;
+import Personagem.Roles.Lutador.Subclasse.*;
+
+public class Lutador extends Roles implements PassivasRole {
+    private Berserker berserker;
+    private Guerreiro guerreiro;
+    private Monk monk;
+    private Atributo atributo;
+
+    public Lutador (Berserker berserker, Guerreiro guerreiro, Monk monk, Atributo atributo){
+        super("");
+        this.berserker = berserker;
+        this.guerreiro = guerreiro;
+        this.monk = monk;
+        this.atributo = atributo;
+    }
+
+    public Lutador() {
+        super("");
+    }
+
+    @Override
+    public void habilidadePassivaRole() {
+        System.out.println("a");
+    }
+
+    @Override
+    public void atributoPassivoRole() {
+        atributo.setForca(atributo.getForca() + 10);
+        atributo.setDefesa(atributo.getDefesa() + 5);
+        atributo.setVida(atributo.getVida() + 30);
+    }
+
+}
