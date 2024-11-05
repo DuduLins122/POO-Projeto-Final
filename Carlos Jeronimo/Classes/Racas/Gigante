@@ -1,0 +1,16 @@
+package Personagem.Racas.Gigante;
+
+import Personagem.Racas.Raca;
+import Personagem.PassivaRaca;
+
+public class Gigante extends Raca implements PassivaRaca {
+
+    public Gigante() {
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+}
