@@ -1,0 +1,28 @@
+package Personagem.Aparencia;
+
+import Personagem.Aparencia.Corpo.Corpo;
+import Personagem.Personagem;
+
+public abstract class Aparencia extends Personagem {
+
+    private Corpo corpo;
+
+
+    public Aparencia(Corpo corpo) {
+        super("");
+        this.corpo = corpo;
+
+    }
+    public Aparencia() {
+        super("");
+    }
+
+    public Corpo getCorpo() {
+        return corpo;
+    }
+    public void setCorpo(Corpo corpo) {
+        this.corpo = corpo;
+    }
+
+    public abstract void mudarAparencia();
+}
