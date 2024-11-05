@@ -1,1 +1,6 @@
+package Personagem;
+
+public interface exibirAtri {
+    void exibirAtributos();
+}
 
