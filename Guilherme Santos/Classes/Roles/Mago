@@ -1,0 +1,39 @@
+package Personagem.Roles.Mago;
+
+import Personagem.Atributo;
+import Personagem.Roles.Mago.Subclasse.*;
+import Personagem.Roles.*;
+import Personagem.PassivasRole;
+
+
+public class Mago extends Roles implements PassivasRole {
+    private BlackMage blackmage;
+    private Summoner summoner;
+    private Necromancer necromancer;
+    private Atributo atributo;
+
+    public Mago(BlackMage blackmage, Summoner summoner, Necromancer necromancer, Atributo atributo) {
+        super("");
+        this.blackmage = blackmage;
+        this.summoner = summoner;
+        this.necromancer = necromancer;
+        this.atributo = atributo;
+    }
+
+    public Mago() {
+        super("");
+    }
+
+    @Override
+    public void habilidadePassivaRole() {
+        System.out.println("a");
+    }
+
+    @Override
+    public void atributoPassivoRole() {
+        atributo.setInteligencia(atributo.getInteligencia() + 10);
+        atributo.setMana(atributo.getMana() + 100);
+    }
+
+}
+
