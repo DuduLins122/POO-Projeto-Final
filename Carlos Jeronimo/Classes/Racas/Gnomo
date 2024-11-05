@@ -1,0 +1,16 @@
+package Personagem.Racas.Gnomo;
+
+import Personagem.Racas.Raca;
+import Personagem.PassivaRaca;
+
+public class Gnomo extends Raca implements PassivaRaca {
+
+    public Gnomo() {
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+}
