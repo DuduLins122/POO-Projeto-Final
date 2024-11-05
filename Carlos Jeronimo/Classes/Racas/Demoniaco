@@ -1,0 +1,16 @@
+package Personagem.Racas.Demoniaco;
+
+import Personagem.Racas.Raca;
+import Personagem.PassivaRaca;
+
+public class Demoniaco extends Raca implements PassivaRaca {
+
+    public Demoniaco(){
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("");
+    }
+}
