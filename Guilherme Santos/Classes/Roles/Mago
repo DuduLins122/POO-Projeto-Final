@@ -5,7 +5,6 @@ import Personagem.Roles.Mago.Subclasse.*;
 import Personagem.Roles.*;
 import Personagem.PassivasRole;
 
-
 public class Mago extends Roles implements PassivasRole {
     private BlackMage blackmage;
     private Summoner summoner;
@@ -25,8 +24,8 @@ public class Mago extends Roles implements PassivasRole {
     }
 
     @Override
-    public void habilidadePassivaRole() {
-        System.out.println("Aumenta em 10% de dano mágico canalizar habilidades.");
+    public double habilidadePassivaRole(double valorAtual) {
+        return valorAtual * 1.1;
     }
 
     @Override
@@ -35,5 +34,8 @@ public class Mago extends Roles implements PassivasRole {
         atributo.setMana(atributo.getMana() + 100);
     }
 
+    @Override
+    public void descricaoHabilidadePassiva() {
+        System.out.println("Aumenta em 10% de dano mágico ao canalizar habilidades.");
+    }
 }
-
