@@ -1,0 +1,39 @@
+package Personagem.Racas;
+
+import Personagem.Personagem;
+import Personagem.Racas.Humano.Humano;
+import Personagem.Racas.Elfo.Elfo;
+import Personagem.Racas.Anao.Anao;
+import Personagem.Racas.Celestial.Celestial;
+import Personagem.Racas.Demoniaco.Demoniaco;
+import Personagem.Racas.Gigante.Gigante;
+import Personagem.Racas.Gnomo.Gnomo;
+
+
+public abstract class Raca extends Personagem {
+    private Humano humano;
+    private Elfo elfo;
+    private Anao anao;
+    private Celestial celestial;
+    private Demoniaco demoniaco;
+    private Gigante gigante;
+    private Gnomo gnomo;
+
+
+    public Raca (Humano humano, Elfo elfo, Anao anao, Celestial celestial, Demoniaco demoniaco, Gigante gigante,
+                 Gnomo gnomo) {
+        super("");
+        this.humano = humano;
+        this.elfo = elfo;
+        this.anao = anao;
+        this.celestial = celestial;
+        this.demoniaco = demoniaco;
+        this.gigante = gigante;
+        this.gnomo = gnomo;
+
+    }
+
+    public Raca() {
+        super("");
+    }
+}
