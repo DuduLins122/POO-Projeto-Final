@@ -27,7 +27,7 @@ public class Atirador extends Roles implements PassivasRole{
 
     @Override
     public void habilidadePassivaRole() {
-        System.out.println("a");
+        System.out.println("A cada 4 ataques o 5° sera fortalecido.");
     }
 
     @Override
