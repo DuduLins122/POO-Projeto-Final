@@ -1,0 +1,41 @@
+package Personagem.Roles.Atirador;
+
+import Personagem.Atributo;
+import Personagem.PassivasRole;
+import Personagem.Roles.*;
+import Personagem.Roles.Atirador.Subclasse.*;
+
+
+public class Atirador extends Roles implements PassivasRole{
+    private Gunner gunner;
+    private Hunter hunter;
+    private DeadEye deadeye;
+    private Atributo atributo;
+
+    public Atirador(Gunner gunner, Hunter hunter, DeadEye deadeye, Atributo atributo){
+        super("");
+        this.gunner = gunner;
+        this.hunter = hunter;
+        this.deadeye = deadeye;
+        this.atributo = atributo;
+    }
+
+    public Atirador() {
+        super("");
+    }
+
+
+    @Override
+    public void habilidadePassivaRole() {
+        System.out.println("a");
+    }
+
+    @Override
+    public void atributoPassivoRole() {
+        atributo.setForca(atributo.getForca() + 7);
+        atributo.setDestreza(atributo.getDestreza() + 8);
+    }
+
+}
+
+
