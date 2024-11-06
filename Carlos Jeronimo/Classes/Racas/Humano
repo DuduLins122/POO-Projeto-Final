@@ -1,18 +1,30 @@
 package Personagem.Racas.Humano;
 
-import Personagem.PassivaRaca;
+import Personagem.Atributo.Atributo;
+import Personagem.Interfaces.PassivaRaca;
 import Personagem.Racas.*;
 
 
 public class Humano extends Raca implements PassivaRaca {
+    private Atributo atributo;
+
+    public Humano (Atributo atributo, int sabedoria, int carisma, int constituicao) {
+        this.atributo = atributo;
+    }
 
     public Humano() {
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Raça humano concede + 3 pontos em força, inteligencia, constituição, carisma e sabedoria.");
+        return ((getAtributo().getForca()) + 3) + (getAtributo().getInteligencia() + 3) + (getAtributo().getDefesa() + 3) + (getAtributo().getDestreza() + 3);
+    }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede versatilidade e linguagens.");
     }
 
 }
