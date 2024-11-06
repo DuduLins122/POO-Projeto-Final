@@ -1,16 +1,31 @@
 package Personagem.Racas.Demoniaco;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
+
+import javax.swing.table.AbstractTableModel;
 
 public class Demoniaco extends Raca implements PassivaRaca {
+    private Atributo atributo;
+
+    public Demoniaco(Atributo atributo) {
+        this.atributo = atributo;
+    }
 
     public Demoniaco(){
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Escolhendo essa raca voce ganha + 2 pontos de inteligencia e 10 pontos de carisma.");
+        return (getAtributo().getInteligencia() + 2) + (getAtributo().getForca() + 5);
     }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede visão no escuro e resistencia a dano de fogo.");
+    }
+
 }
