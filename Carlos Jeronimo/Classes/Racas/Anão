@@ -1,16 +1,30 @@
 package Personagem.Racas.Anao;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
 
 public class Anao extends Raca implements PassivaRaca{
+    private Atributo atributo;
+
+    public Anao(Atributo atributo) {
+        this.atributo = atributo;
+    }
 
     public Anao(){
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Voce ganhou 16 pontos de constituição por escolher essa raça.");
+        return 2 * getAtributo().getDefesa();
     }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede visão no escuro e proeficiencia com machados e matelos de guerra");
+    }
+
 }
+
