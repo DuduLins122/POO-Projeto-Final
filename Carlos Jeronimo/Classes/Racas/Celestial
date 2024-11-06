@@ -1,16 +1,30 @@
 package Personagem.Racas.Celestial;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
 
 public class Celestial extends Raca implements PassivaRaca {
+
+    private Atributo atributo;
+
+    public Celestial(Atributo atributo) {
+        this.atributo = atributo;
+    }
 
     public Celestial() {
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Ao eescolher esta raça voce ganha 10 pontos de carisma e 6 de sabedoria");
+        return (5 + getAtributo().getForca()) + (2 * getAtributo().getInteligencia());
     }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede visão no escuro e resistencia a dano radiante.");
+    }
+
 }
