@@ -1,5 +1,7 @@
 package Personagem;
 
+import Personagem.Aparencia.Aparencia;
+import Personagem.Atributo.Atributo;
 import Personagem.Roles.Roles;
 import Personagem.Racas.Raca;
 
