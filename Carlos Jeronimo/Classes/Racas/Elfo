@@ -17,7 +17,7 @@ public class Elfo extends Raca implements PassivaRaca {
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Esta raça concede + 10 ponto de destreza e 6 pontos de sabedoria");
+        System.out.println("Esta raça concede + 10 ponto de destreza e 5 pontos de inteligencia");
         return (getAtributo().getDestreza() + 10) + (getAtributo().getInteligencia() + 5);
     }
 
