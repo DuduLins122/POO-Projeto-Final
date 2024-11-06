@@ -1,16 +1,30 @@
 package Personagem.Racas.Gnomo;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
 
 public class Gnomo extends Raca implements PassivaRaca {
+    private Atributo atributo;
+
+    public Gnomo(Atributo atributo) {
+        this.atributo = atributo;
+    }
 
     public Gnomo() {
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Esta raça concede + 10 pontos de inteligencia.");
+        return (getAtributo().getInteligencia() + 10);
     }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede visão no escuro e resistencia a magia.");
+    }
+
+
 }
