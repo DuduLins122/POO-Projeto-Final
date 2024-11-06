@@ -1,16 +1,28 @@
 package Personagem.Racas.Gigante;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
 
 public class Gigante extends Raca implements PassivaRaca {
+    private Atributo atributo;
+
+    public Gigante(Atributo atributo){
+        this.atributo = atributo;
+    }
 
     public Gigante() {
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Esta raça concede + 10 pontos de força e 6 pontos de constituição.");
+        return (getAtributo().getForca() + 10) + (getAtributo().getDefesa() + 5);
+    }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede resistencia a dano e sentidos aguçados(percepção).");
     }
 }
