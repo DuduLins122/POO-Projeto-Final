@@ -18,7 +18,7 @@ public class Humano extends Raca implements PassivaRaca {
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Raça humano concede + 3 pontos em força, inteligencia, constituição, carisma e sabedoria.");
+        System.out.println("Raça humano concede + 3 pontos em força, inteligencia, defesa e destreza.");
         return ((getAtributo().getForca()) + 3) + (getAtributo().getInteligencia() + 3) + (getAtributo().getDefesa() + 3) + (getAtributo().getDestreza() + 3);
     }
 
