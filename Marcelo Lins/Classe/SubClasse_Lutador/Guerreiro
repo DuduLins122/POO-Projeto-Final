@@ -6,39 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Guerreiro extends Lutador {
-    private int vida;
-    private int mana;
-    private int defesa;
 
-    public Guerreiro(Berserker berserker, Guerreiro guerreiro, Monk monk, int vida, int mana, int defesa) {
-        super(berserker, guerreiro, monk);
-        this.vida = vida;
-        this.mana = mana;
-        this.defesa = defesa;
-    }
-
-    public int getVida() {
-        return vida;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-
-    public int getDefesa() {
-        return defesa;
-    }
-
-    public void setDefesa(int defesa) {
-        this.defesa = defesa;
+    public Guerreiro(){
+        super();
     }
 
     public String lerLore(String filePath) {
@@ -54,12 +24,4 @@ public class Guerreiro extends Lutador {
         return lore.toString();
     }
 
-    @Override
-    public String toString() {
-        return "Guerreiro{" +
-                "vida=" + vida +
-                ", mana=" + mana +
-                ", defesa=" + defesa +
-                '}';
-    }
 }
