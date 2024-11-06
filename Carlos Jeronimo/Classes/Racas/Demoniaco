@@ -19,8 +19,8 @@ public class Demoniaco extends Raca implements PassivaRaca {
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Escolhendo essa raca voce ganha + 2 pontos de inteligencia e 10 pontos de carisma.");
-        return (getAtributo().getInteligencia() + 2) + (getAtributo().getForca() + 5);
+        System.out.println("Escolhendo essa raca voce ganha + 2 pontos de inteligencia e 10 pontos de força.");
+        return (getAtributo().getInteligencia() + 2) + (getAtributo().getForca() + 10);
     }
 
     @Override
