@@ -17,7 +17,7 @@ public class Gigante extends Raca implements PassivaRaca {
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Esta raça concede + 10 pontos de força e 6 pontos de constituição.");
+        System.out.println("Esta raça concede + 10 pontos de força e 5 pontos de defesa.");
         return (getAtributo().getForca() + 10) + (getAtributo().getDefesa() + 5);
     }
 
