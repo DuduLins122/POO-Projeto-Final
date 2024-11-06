@@ -6,40 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Reaper extends Assassino {
-    private int vida;
-    private int mana;
-    private int defesa;
 
-    public Reaper(Samurai samurai, Reaper reaper, Viper viper, int vida, int mana, int defesa) {
-        super(samurai, reaper, viper);
-        this.vida = vida;
-        this.mana = mana;
-        this.defesa = defesa;
+    public Reaper(){
+        super();
     }
 
-    public int getVida() {
-        return vida;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-
-    public int getDefesa() {
-        return defesa;
-    }
-
-    public void setDefesa(int defesa) {
-        this.defesa = defesa;
-    }
 
     public String lerLore(String filePath) {
         StringBuilder lore = new StringBuilder();
@@ -54,12 +25,6 @@ public class Reaper extends Assassino {
         return lore.toString();
     }
 
-    @Override
-    public String toString() {
-        return "Reaper{" +
-                "vida=" + vida +
-                ", mana=" + mana +
-                ", defesa=" + defesa +
-                '}';
-    }
+
+
 }
