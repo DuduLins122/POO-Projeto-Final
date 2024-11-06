@@ -18,8 +18,8 @@ public class Celestial extends Raca implements PassivaRaca {
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Ao eescolher esta raça voce ganha 10 pontos de carisma e 6 de sabedoria");
-        return (5 + getAtributo().getForca()) + (2 * getAtributo().getInteligencia());
+        System.out.println("Ao eescolher esta raça voce ganha 5 pontos de força e 10 pontos de inteligencia");
+        return (5 + getAtributo().getForca()) + (10 + getAtributo().getInteligencia());
     }
 
     @Override
