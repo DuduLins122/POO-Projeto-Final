@@ -17,8 +17,8 @@ public class Anao extends Raca implements PassivaRaca{
 
     @Override
     public double habilidadePassivaRaca() {
-        System.out.println("Voce ganhou 16 pontos de constituição por escolher essa raça.");
-        return 2 * getAtributo().getDefesa();
+        System.out.println("Voce ganhou 10 pontos de defesa por escolher essa raça.");
+        return 10 + getAtributo().getDefesa();
     }
 
     @Override
