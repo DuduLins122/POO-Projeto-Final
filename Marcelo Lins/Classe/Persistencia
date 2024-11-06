@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.ArrayList;
+import Personagem.Personagem;
+
+public class Persistencia {
+
+    public static void salvarPersonagem(Personagem personagem, String caminhoArquivo) {
+        try (FileOutputStream fos = new FileOutputStream(caminhoArquivo, true);
+             ObjectOutputStream oos = new ObjectOutputStream(fos) {
+                 protected void writeStreamHeader() throws IOException {
+                     reset();
+                 }
+             }) {
+            oos.writeObject(personagem);
+            System.out.println("Personagem salvo com sucesso.");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar o personagem: " + e.getMessage());
+        }
+    }
+
+    public static ArrayList<Personagem> carregarTodosPersonagens(String caminhoArquivo) {
+        ArrayList<Personagem> personagens = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(caminhoArquivo);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    Personagem personagem = (Personagem) ois.readObject();
+                    personagens.add(personagem);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+            System.out.println("Todos os personagens carregados com sucesso.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Erro ao carregar os personagens: " + e.getMessage());
+        }
+        return personagens;
+    }
+}
