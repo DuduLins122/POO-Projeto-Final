@@ -1,16 +1,29 @@
 package Personagem.Racas.Elfo;
 
+import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
-import Personagem.PassivaRaca;
+import Personagem.Interfaces.PassivaRaca;
 
 public class Elfo extends Raca implements PassivaRaca {
+    private Atributo atributo;
+
+    public Elfo(Atributo atributo) {
+        this.atributo = atributo;
+    }
 
     public Elfo() {
         super();
     }
 
     @Override
-    public void habilidadePassivaRaca() {
-        System.out.println("");
+    public double habilidadePassivaRaca() {
+        System.out.println("Esta raça concede + 10 ponto de destreza e 6 pontos de sabedoria");
+        return (getAtributo().getDestreza() + 10) + (getAtributo().getInteligencia() + 5);
+    }
+
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede sentidos aguçados(melhora a percepção) e resistencia a magia.");
+
     }
 }
