@@ -92,6 +92,27 @@ public class Persistencia {
         }
     }
 
+    public static void editarNomePersonagem(String nomeAntigo, String novoNome) {
+        String sql = "UPDATE personagens SET nome = ? WHERE nome = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, novoNome);
+            stmt.setString(2, nomeAntigo);
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Nome do personagem alterado com sucesso.");
+            } else {
+                System.out.println("Nenhum personagem encontrado com o nome: " + nomeAntigo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private static Personagem criarPersonagemPorRole(String nome, String role, Raca raca, Atributo atributo) {
         switch (role) {
