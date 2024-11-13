@@ -1,19 +1,23 @@
 package Personagem.Roles.Atirador.Subclasse;
 
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
 import Personagem.Roles.Atirador.Atirador;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Hunter extends Atirador {
+public class Hunter extends Atirador implements Serializable {
+    private static final long serialVersionUID = 10L;
 
-    public Hunter(){
-        super();
+    public Hunter(String nome, Raca raca, Atributo atributo) {
+        super(nome, raca, atributo);
     }
 
-    public String lerLore(String filePath) {
+    public String lerLore() {
         StringBuilder lore = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ritac\\IdeaProjects\\Projeto FInal POO\\src\\Lores\\Hunter.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lore.append(line).append("\n");
@@ -23,5 +27,4 @@ public class Hunter extends Atirador {
         }
         return lore.toString();
     }
-
 }
