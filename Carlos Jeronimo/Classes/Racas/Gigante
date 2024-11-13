@@ -3,12 +3,16 @@ package Personagem.Racas.Gigante;
 import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
 import Personagem.Interfaces.PassivaRaca;
+import java.io.Serializable;
 
-public class Gigante extends Raca implements PassivaRaca {
+public class Gigante extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 31L;
+
     private Atributo atributo;
 
-    public Gigante(Atributo atributo){
+    public Gigante(Atributo atributo) {
         this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
     }
 
     public Gigante() {
@@ -16,13 +20,22 @@ public class Gigante extends Raca implements PassivaRaca {
     }
 
     @Override
-    public double habilidadePassivaRaca() {
-        System.out.println("Esta raça concede + 10 pontos de força e 5 pontos de defesa.");
-        return (getAtributo().getForca() + 10) + (getAtributo().getDefesa() + 5);
+    public void habilidadePassivaRaca() {
+        System.out.println("Esta raça concede +10 pontos de força e 6 pontos de constituição.");
     }
 
     @Override
     public void descricaoPassivaRaca() {
-        System.out.println("Concede resistencia a dano e sentidos aguçados(percepção).");
+        System.out.println("Concede resistência a dano e sentidos aguçados (percepção).");
+    }
+
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setForca(atributo.getForca() + 10);
+        atributo.setDefesa(atributo.getDefesa() + 6);
+    }
+
+    public Atributo getAtributo() {
+        return atributo;
     }
 }
