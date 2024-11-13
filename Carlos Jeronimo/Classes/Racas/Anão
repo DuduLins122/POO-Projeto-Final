@@ -3,28 +3,39 @@ package Personagem.Racas.Anao;
 import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
 import Personagem.Interfaces.PassivaRaca;
+import java.io.Serializable;
 
-public class Anao extends Raca implements PassivaRaca{
+public class Anao extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 27L;
+
     private Atributo atributo;
 
     public Anao(Atributo atributo) {
         this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
     }
 
-    public Anao(){
+    public Anao() {
         super();
     }
 
     @Override
-    public double habilidadePassivaRaca() {
-        System.out.println("Voce ganhou 10 pontos de defesa por escolher essa raça.");
-        return 10 + getAtributo().getDefesa();
+    public void habilidadePassivaRaca() {
+        System.out.println("Você ganhou 16 pontos de constituição por escolher essa raça.");
     }
 
     @Override
     public void descricaoPassivaRaca() {
-        System.out.println("Concede visão no escuro e proeficiencia com machados e matelos de guerra");
+        System.out.println("Concede visão no escuro e proficiência com machados e martelos de guerra.");
     }
 
-}
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setForca(atributo.getForca() + 5);
+        atributo.setDefesa(atributo.getDefesa() + 3);
+    }
 
+    public Atributo getAtributo() {
+        return atributo;
+    }
+}
