@@ -3,12 +3,16 @@ package Personagem.Racas.Elfo;
 import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
 import Personagem.Interfaces.PassivaRaca;
+import java.io.Serializable;
 
-public class Elfo extends Raca implements PassivaRaca {
+public class Elfo extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 30L;
+
     private Atributo atributo;
 
     public Elfo(Atributo atributo) {
         this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
     }
 
     public Elfo() {
@@ -16,14 +20,22 @@ public class Elfo extends Raca implements PassivaRaca {
     }
 
     @Override
-    public double habilidadePassivaRaca() {
-        System.out.println("Esta raça concede + 10 ponto de destreza e 5 pontos de inteligencia");
-        return (getAtributo().getDestreza() + 10) + (getAtributo().getInteligencia() + 5);
+    public void habilidadePassivaRaca() {
+        System.out.println("Esta raça concede +10 pontos de destreza e 6 pontos de sabedoria.");
     }
 
     @Override
     public void descricaoPassivaRaca() {
-        System.out.println("Concede sentidos aguçados(melhora a percepção) e resistencia a magia.");
+        System.out.println("Concede sentidos aguçados (melhora a percepção) e resistência a magia.");
+    }
 
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setDestreza(atributo.getDestreza() + 10);
+        atributo.setInteligencia(atributo.getInteligencia() + 6);
+    }
+
+    public Atributo getAtributo() {
+        return atributo;
     }
 }
