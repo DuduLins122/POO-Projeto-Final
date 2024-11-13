@@ -1,36 +1,15 @@
 package Personagem.Roles;
 
 import Personagem.Personagem;
-import Personagem.Roles.Assassino.Assassino;
-import Personagem.Roles.Atirador.Atirador;
-import Personagem.Roles.Lutador.Lutador;
-import Personagem.Roles.Mago.Mago;
-import Personagem.Roles.Suporte.Suporte;
-import Personagem.Roles.Tank.Tank;
+import Personagem.Racas.Raca;
+import Personagem.Atributo.Atributo;
+import java.io.Serializable;
 
-public abstract class Roles extends Personagem {
-    private Tank tank;
-    private Mago mago;
-    private Atirador atirador;
-    private Assassino assassino;
-    private Suporte suporte;
-    private Lutador lutador;
-
-    public Roles(String nome, Tank tank, Mago mago, Atirador atirador, Assassino assassino, Suporte suporte, Lutador lutador) {
-        super("");
-        this.atirador = atirador;
-        this.assassino = assassino;
-        this.lutador = lutador;
-        this.mago = mago;
-        this.suporte = suporte;
-        this.tank = tank;
-    }
+public abstract class Roles extends Personagem implements Serializable {
+    private static final long serialVersionUID = 2L;
 
 
-    public Roles(String nome) {
-        super("");
+    public Roles(String nome, Roles roles, Raca raca, Atributo atributo) {
+        super(nome, roles, raca, atributo);
     }
 }
-
-
-
