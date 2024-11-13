@@ -1,26 +1,18 @@
 package Personagem.Roles.Suporte;
 
-import Personagem.Atributo;
-import Personagem.Roles.*;
-import Personagem.Roles.Suporte.Subclasse.*;
-import Personagem.PassivasRole;
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
+import Personagem.Roles.Roles;
+import Personagem.Interfaces.PassivasRole;
+import java.io.Serializable;
 
-public class Suporte extends Roles implements PassivasRole {
-    private Sage sage;
-    private Clerigo clerigo;
-    private WhiteMage whitemage;
-    private Atributo atributo;
+public class Suporte extends Roles implements PassivasRole, Serializable {
+    private static final long serialVersionUID = 19L;
 
-    public Suporte(Sage sage, Clerigo clerigo, WhiteMage whitemage, Atributo atributo){
-        super("");
-        this.sage = sage;
-        this.clerigo = clerigo;
-        this.whitemage = whitemage;
-        this.atributo = atributo;
-    }
-
-    public Suporte(){
-        super("");
+    public Suporte(String nome, Raca raca, Atributo atributo) {
+        super(nome, null, raca, atributo);
+        this.setRoles(this);
+        atributoPassivoRole();
     }
 
     @Override
@@ -30,8 +22,10 @@ public class Suporte extends Roles implements PassivasRole {
 
     @Override
     public void atributoPassivoRole() {
-        atributo.setMana(atributo.getMana() + 50);
-        atributo.setInteligencia(atributo.getInteligencia() + 5);
+        if (getAtributo() != null) {
+            getAtributo().setMana(getAtributo().getMana() + 50);
+            getAtributo().setInteligencia(getAtributo().getInteligencia() + 5);
+        }
     }
 
     @Override
