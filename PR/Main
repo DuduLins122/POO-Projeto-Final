@@ -1,1 +1,311 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import Personagem.*;
+import Personagem.Atributo.Atributo;
+import Personagem.Roles.Atirador.Subclasse.*;
+import Personagem.Roles.Lutador.Subclasse.*;
+import Personagem.Roles.Mago.Subclasse.*;
+import Personagem.Racas.*;
+import Personagem.Racas.Anao.*;
+import Personagem.Racas.Celestial.*;
+import Personagem.Racas.Demoniaco.*;
+import Personagem.Racas.Elfo.*;
+import Personagem.Racas.Gigante.*;
+import Personagem.Racas.Gnomo.*;
+import Personagem.Racas.Humano.*;
+import Personagem.Roles.Assassino.Subclasse.*;
+import Personagem.Roles.Suporte.Subclasse.*;
+import Personagem.Roles.Tank.Subclasse.*;
+
+public class Main {
+
+    private static JFrame frame;
+    private static String selectedRole = "";
+    private static String selectedSubRole = "";
+    private static Raca selectedRace;
+    private static Atributo atributo;
+    private static Personagem personagem;
+    private static String nomePersonagem = "";
+
+    private static final Map<String, String[]> roleToSubRolesMap = new HashMap<>();
+
+    static {
+        roleToSubRolesMap.put("Assassino", new String[]{"Reaper", "Samurai", "Viper"});
+        roleToSubRolesMap.put("Atirador", new String[]{"DeadEye", "Gunner", "Hunter"});
+        roleToSubRolesMap.put("Lutador", new String[]{"Berserker", "Guerreiro", "Monk"});
+        roleToSubRolesMap.put("Mago", new String[]{"BlackMage", "Necromancer", "Summoner"});
+        roleToSubRolesMap.put("Suporte", new String[]{"Clerigo", "Sage", "WhiteMage"});
+        roleToSubRolesMap.put("Tank", new String[]{"Barbaro", "Paladino", "Warrior"});
+    }
+
+    public static void main(String[] args) {
+        criarMenu();
+    }
+
+    public static void criarMenu() {
+        frame = new JFrame("Menu Principal");
+        frame.setSize(400, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        frame.add(panel);
+        panel.setLayout(new GridLayout(3, 1));
+
+        JButton novoPersonagemBtn = new JButton("Criar Novo Personagem");
+        novoPersonagemBtn.addActionListener(e -> escolherClasse());
+        panel.add(novoPersonagemBtn);
+
+        JButton carregarPersonagemBtn = new JButton("Carregar Personagem");
+        carregarPersonagemBtn.addActionListener(e -> carregarPersonagens());
+        panel.add(carregarPersonagemBtn);
+
+        JButton sairBtn = new JButton("Sair");
+        sairBtn.addActionListener(e -> System.exit(0));
+        panel.add(sairBtn);
+
+        frame.setVisible(true);
+    }
+
+    private static void escolherClasse() {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Escolha de Classe");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1));
+
+        String[] roles = {"Assassino", "Atirador", "Lutador", "Mago", "Suporte", "Tank"};
+        for (String role : roles) {
+            JButton roleButton = new JButton(role);
+            roleButton.addActionListener(e -> {
+                selectedRole = role;
+                escolherSubclasse(role);
+            });
+            panel.add(roleButton);
+        }
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void escolherSubclasse(String role) {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Escolha de Subclasse para " + role);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1));
+
+        String[] subRoles = roleToSubRolesMap.get(role);
+        for (String subRole : subRoles) {
+            JButton subRoleButton = new JButton(subRole);
+            subRoleButton.addActionListener(e -> {
+                selectedSubRole = subRole;
+                escolherRaca();
+            });
+            panel.add(subRoleButton);
+        }
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void escolherRaca() {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Escolha de Raça");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1));
+
+        String[] races = {"Anão", "Celestial", "Demoniaco", "Elfo", "Gigante", "Gnomo", "Humano"};
+        for (String race : races) {
+            JButton raceButton = new JButton(race);
+            raceButton.addActionListener(e -> {
+                atributo = new Atributo("Atributos Iniciais") {
+                    @Override
+                    public void distribuirPontos(int forcaPontos, int destrezaPontos, int inteligenciaPontos, int defesaPontos, int vidaPontos, int manaPontos) {}
+                };
+                switch (race) {
+                    case "Anão": selectedRace = new Anao(atributo); break;
+                    case "Celestial": selectedRace = new Celestial(atributo); break;
+                    case "Demoniaco": selectedRace = new Demoniaco(atributo); break;
+                    case "Elfo": selectedRace = new Elfo(atributo); break;
+                    case "Gigante": selectedRace = new Gigante(atributo); break;
+                    case "Gnomo": selectedRace = new Gnomo(atributo); break;
+                    case "Humano": selectedRace = new Humano(atributo); break;
+                }
+                definirNomePersonagem();
+            });
+            panel.add(raceButton);
+        }
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void definirNomePersonagem() {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Definir Nome do Personagem");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 1));
+
+        JTextField nomeField = new JTextField();
+        panel.add(new JLabel("Nome do Personagem:"));
+        panel.add(nomeField);
+
+        JButton confirmarBtn = new JButton("Confirmar Nome");
+        confirmarBtn.addActionListener(e -> {
+            nomePersonagem = nomeField.getText().trim();
+            if (!nomePersonagem.isEmpty()) {
+                definirAtributos();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Por favor, insira um nome válido.");
+            }
+        });
+        panel.add(confirmarBtn);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void definirAtributos() {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Definir Atributos");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(7, 2));
+
+        panel.add(new JLabel("Força:"));
+        panel.add(new JLabel(String.valueOf(atributo.getForca())));
+
+        panel.add(new JLabel("Destreza:"));
+        panel.add(new JLabel(String.valueOf(atributo.getDestreza())));
+
+        panel.add(new JLabel("Inteligência:"));
+        panel.add(new JLabel(String.valueOf(atributo.getInteligencia())));
+
+        panel.add(new JLabel("Vida:"));
+        panel.add(new JLabel(String.valueOf(atributo.getVida())));
+
+        panel.add(new JLabel("Mana:"));
+        panel.add(new JLabel(String.valueOf(atributo.getMana())));
+
+        panel.add(new JLabel("Defesa:"));
+        panel.add(new JLabel(String.valueOf(atributo.getDefesa())));
+
+        JButton confirmarBtn = new JButton("Confirmar");
+        confirmarBtn.addActionListener(e -> {
+            criarPersonagem();
+            exibirResumo();
+        });
+        panel.add(confirmarBtn);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void criarPersonagem() {
+        switch (selectedSubRole) {
+            case "Samurai": personagem = new Samurai(nomePersonagem, selectedRace, atributo); break;
+            case "Reaper": personagem = new Reaper(nomePersonagem, selectedRace, atributo); break;
+            case "Viper": personagem = new Viper(nomePersonagem, selectedRace, atributo); break;
+            case "DeadEye": personagem = new DeadEye(nomePersonagem, selectedRace, atributo); break;
+            case "Gunner": personagem = new Gunner(nomePersonagem, selectedRace, atributo); break;
+            case "Hunter": personagem = new Hunter(nomePersonagem, selectedRace, atributo); break;
+            case "Berserker": personagem = new Berserker(nomePersonagem, selectedRace, atributo); break;
+            case "Guerreiro": personagem = new Guerreiro(nomePersonagem, selectedRace, atributo); break;
+            case "Monk": personagem = new Monk(nomePersonagem, selectedRace, atributo); break;
+            case "BlackMage": personagem = new BlackMage(nomePersonagem, selectedRace, atributo); break;
+            case "Necromancer": personagem = new Necromancer(nomePersonagem, selectedRace, atributo); break;
+            case "Summoner": personagem = new Summoner(nomePersonagem, selectedRace, atributo); break;
+            case "Clerigo": personagem = new Clerigo(nomePersonagem, selectedRace, atributo); break;
+            case "Sage": personagem = new Sage(nomePersonagem, selectedRace, atributo); break;
+            case "WhiteMage": personagem = new WhiteMage(nomePersonagem, selectedRace, atributo); break;
+            case "Barbaro": personagem = new Barbaro(nomePersonagem, selectedRace, atributo); break;
+            case "Paladino": personagem = new Paladino(nomePersonagem, selectedRace, atributo); break;
+            case "Warrior": personagem = new Warrior(nomePersonagem, selectedRace, atributo); break;
+            default: System.out.println("Subclasse não encontrada."); return;
+        }
+        Persistencia.salvarPersonagem(personagem); // Agora salva no banco
+    }
+
+    private static void exibirResumo() {
+        frame.getContentPane().removeAll();
+        frame.setTitle("Resumo do Personagem");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(9, 1));
+
+        panel.add(new JLabel("Nome: " + nomePersonagem));
+        panel.add(new JLabel("Classe: " + selectedRole));
+        panel.add(new JLabel("Subclasse: " + selectedSubRole));
+        panel.add(new JLabel("Raça: " + selectedRace.getClass().getSimpleName()));
+        panel.add(new JLabel("Força: " + atributo.getForca()));
+        panel.add(new JLabel("Destreza: " + atributo.getDestreza()));
+        panel.add(new JLabel("Inteligência: " + atributo.getInteligencia()));
+        panel.add(new JLabel("Vida: " + atributo.getVida()));
+        panel.add(new JLabel("Mana: " + atributo.getMana()));
+        panel.add(new JLabel("Defesa: " + atributo.getDefesa()));
+
+        JButton voltarMenuBtn = new JButton("Voltar ao Menu");
+        voltarMenuBtn.addActionListener(e -> criarMenu());
+        panel.add(voltarMenuBtn);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private static void carregarPersonagens() {
+        ArrayList<Personagem> personagens = Persistencia.carregarPersonagens();
+
+        frame.getContentPane().removeAll();
+        frame.setTitle("Personagens Carregados");
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        for (Personagem p : personagens) {
+            JPanel personagemPanel = new JPanel();
+            personagemPanel.setLayout(new BoxLayout(personagemPanel, BoxLayout.Y_AXIS));
+
+            personagemPanel.add(new JLabel("Nome: " + p.getNome()));
+            personagemPanel.add(new JLabel("Classe: " + p.getClass().getSimpleName()));
+            personagemPanel.add(new JLabel("Raça: " + p.getRaca().getClass().getSimpleName()));
+            personagemPanel.add(new JLabel("Força: " + p.getAtributo().getForca()));
+            personagemPanel.add(new JLabel("Destreza: " + p.getAtributo().getDestreza()));
+            personagemPanel.add(new JLabel("Inteligência: " + p.getAtributo().getInteligencia()));
+            personagemPanel.add(new JLabel("Vida: " + p.getAtributo().getVida()));
+            personagemPanel.add(new JLabel("Mana: " + p.getAtributo().getMana()));
+            personagemPanel.add(new JLabel("Defesa: " + p.getAtributo().getDefesa()));
+
+            JButton removerBtn = new JButton("Remover Personagem");
+            removerBtn.addActionListener(e -> {
+                Persistencia.removerPersonagem(p.getNome());
+                carregarPersonagens();
+            });
+
+            personagemPanel.add(removerBtn);
+
+            panel.add(personagemPanel);
+        }
+
+        JButton voltarMenuBtn = new JButton("Voltar ao Menu");
+        voltarMenuBtn.addActionListener(e -> criarMenu());
+        panel.add(voltarMenuBtn);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+
+}
 
