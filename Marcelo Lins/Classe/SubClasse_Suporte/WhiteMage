@@ -1,20 +1,23 @@
 package Personagem.Roles.Suporte.Subclasse;
 
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
 import Personagem.Roles.Suporte.Suporte;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class WhiteMage extends Suporte {
+public class WhiteMage extends Suporte implements Serializable {
+    private static final long serialVersionUID = 22L;
 
-    public WhiteMage() {
-        super();
+    public WhiteMage(String nome, Raca raca, Atributo atributo) {
+        super(nome, raca, atributo);
     }
 
-
-    public String lerLore(String filePath) {
+    public String lerLore() {
         StringBuilder lore = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ritac\\IdeaProjects\\Projeto FInal POO\\src\\Lores\\WhiteMage.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lore.append(line).append("\n");
@@ -24,5 +27,4 @@ public class WhiteMage extends Suporte {
         }
         return lore.toString();
     }
-
 }
