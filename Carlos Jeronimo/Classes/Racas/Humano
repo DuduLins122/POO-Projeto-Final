@@ -2,14 +2,17 @@ package Personagem.Racas.Humano;
 
 import Personagem.Atributo.Atributo;
 import Personagem.Interfaces.PassivaRaca;
-import Personagem.Racas.*;
+import Personagem.Racas.Raca;
+import java.io.Serializable;
 
+public class Humano extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 33L;
 
-public class Humano extends Raca implements PassivaRaca {
     private Atributo atributo;
 
-    public Humano (Atributo atributo, int sabedoria, int carisma, int constituicao) {
+    public Humano(Atributo atributo) {
         this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
     }
 
     public Humano() {
@@ -17,9 +20,9 @@ public class Humano extends Raca implements PassivaRaca {
     }
 
     @Override
-    public double habilidadePassivaRaca() {
-        System.out.println("Raça humano concede + 3 pontos em força, inteligencia, defesa e destreza.");
-        return ((getAtributo().getForca()) + 3) + (getAtributo().getInteligencia() + 3) + (getAtributo().getDefesa() + 3) + (getAtributo().getDestreza() + 3);
+    public void habilidadePassivaRaca() {
+        System.out.println("Raça humano concede +3 pontos em força, inteligência, constituição, carisma e sabedoria.");
+
     }
 
     @Override
@@ -27,4 +30,15 @@ public class Humano extends Raca implements PassivaRaca {
         System.out.println("Concede versatilidade e linguagens.");
     }
 
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setForca(atributo.getForca() + 3);
+        atributo.setInteligencia(atributo.getInteligencia() + 3);
+        atributo.setDefesa(atributo.getDefesa() + 3);
+        atributo.setDestreza(atributo.getDestreza() + 3);
+    }
+
+    public Atributo getAtributo() {
+        return atributo;
+    }
 }
