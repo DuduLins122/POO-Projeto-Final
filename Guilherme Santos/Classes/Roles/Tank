@@ -1,26 +1,18 @@
 package Personagem.Roles.Tank;
 
-import Personagem.Atributo;
-import Personagem.Roles.*;
-import Personagem.Roles.Tank.Subclasse.*;
-import Personagem.PassivasRole;
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
+import Personagem.Roles.Roles;
+import Personagem.Interfaces.PassivasRole;
+import java.io.Serializable;
 
-public class Tank extends Roles implements PassivasRole {
-    private Paladino paladino;
-    private Warrior warrior;
-    private Barbaro barbaro;
-    private Atributo atributo;
+public class Tank extends Roles implements PassivasRole, Serializable {
+    private static final long serialVersionUID = 23L;
 
-    public Tank (Paladino paladino, Barbaro barbaro, Warrior warrior, Atributo atributo){
-        super("");
-        this.paladino = paladino;
-        this.barbaro = barbaro;
-        this.warrior = warrior;
-        this.atributo = atributo;
-    }
-
-    public Tank(){
-        super("");
+    public Tank(String nome, Raca raca, Atributo atributo) {
+        super(nome, null, raca, atributo);
+        this.setRoles(this);
+        atributoPassivoRole();
     }
 
     @Override
@@ -30,8 +22,10 @@ public class Tank extends Roles implements PassivasRole {
 
     @Override
     public void atributoPassivoRole() {
-        atributo.setDefesa(atributo.getDefesa() + 15);
-        atributo.setVida(atributo.getVida() + 100);
+        if (getAtributo() != null) {
+            getAtributo().setDefesa(getAtributo().getDefesa() + 15);
+            getAtributo().setVida(getAtributo().getVida() + 100);
+        }
     }
 
     @Override
