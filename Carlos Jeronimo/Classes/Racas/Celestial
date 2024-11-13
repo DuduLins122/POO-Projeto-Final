@@ -3,13 +3,16 @@ package Personagem.Racas.Celestial;
 import Personagem.Atributo.Atributo;
 import Personagem.Racas.Raca;
 import Personagem.Interfaces.PassivaRaca;
+import java.io.Serializable;
 
-public class Celestial extends Raca implements PassivaRaca {
+public class Celestial extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 28L;
 
     private Atributo atributo;
 
     public Celestial(Atributo atributo) {
         this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
     }
 
     public Celestial() {
@@ -17,14 +20,23 @@ public class Celestial extends Raca implements PassivaRaca {
     }
 
     @Override
-    public double habilidadePassivaRaca() {
-        System.out.println("Ao eescolher esta raça voce ganha 5 pontos de força e 10 pontos de inteligencia");
-        return (5 + getAtributo().getForca()) + (10 + getAtributo().getInteligencia());
+    public void habilidadePassivaRaca() {
+        System.out.println("Ao escolher esta raça, você ganha 10 pontos de mana e 5 pontos de defesa.");
+
     }
 
     @Override
     public void descricaoPassivaRaca() {
-        System.out.println("Concede visão no escuro e resistencia a dano radiante.");
+        System.out.println("Concede visão no escuro e resistência a dano radiante.");
     }
 
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setMana(atributo.getMana() + 10);
+        atributo.setDefesa(atributo.getDefesa() + 5);
+    }
+
+    public Atributo getAtributo() {
+        return atributo;
+    }
 }
