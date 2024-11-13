@@ -1,26 +1,18 @@
 package Personagem.Roles.Lutador;
 
-import Personagem.Atributo;
-import Personagem.PassivasRole;
-import Personagem.Roles.*;
-import Personagem.Roles.Lutador.Subclasse.*;
+import Personagem.Atributo.Atributo;
+import Personagem.Interfaces.PassivasRole;
+import Personagem.Racas.Raca;
+import Personagem.Roles.Roles;
+import java.io.Serializable;
 
-public class Lutador extends Roles implements PassivasRole {
-    private Berserker berserker;
-    private Guerreiro guerreiro;
-    private Monk monk;
-    private Atributo atributo;
+public class Lutador extends Roles implements PassivasRole, Serializable {
+    private static final long serialVersionUID = 11L;
 
-    public Lutador (Berserker berserker, Guerreiro guerreiro, Monk monk, Atributo atributo){
-        super("");
-        this.berserker = berserker;
-        this.guerreiro = guerreiro;
-        this.monk = monk;
-        this.atributo = atributo;
-    }
-
-    public Lutador() {
-        super("");
+    public Lutador(String nome, Raca raca, Atributo atributo) {
+        super(nome, null, raca, atributo);
+        this.setRoles(this);
+        atributoPassivoRole();
     }
 
     @Override
@@ -30,9 +22,11 @@ public class Lutador extends Roles implements PassivasRole {
 
     @Override
     public void atributoPassivoRole() {
-        atributo.setForca(atributo.getForca() + 10);
-        atributo.setDefesa(atributo.getDefesa() + 5);
-        atributo.setVida(atributo.getVida() + 30);
+        if (getAtributo() != null) {
+            getAtributo().setForca(getAtributo().getForca() + 10);
+            getAtributo().setDefesa(getAtributo().getDefesa() + 5);
+            getAtributo().setVida(getAtributo().getVida() + 30);
+        }
     }
 
     @Override
