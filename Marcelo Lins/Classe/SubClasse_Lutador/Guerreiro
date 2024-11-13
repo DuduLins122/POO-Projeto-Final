@@ -1,19 +1,23 @@
 package Personagem.Roles.Lutador.Subclasse;
 
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
 import Personagem.Roles.Lutador.Lutador;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Guerreiro extends Lutador {
+public class Guerreiro extends Lutador implements Serializable {
+    private static final long serialVersionUID = 13L;
 
-    public Guerreiro(){
-        super();
+    public Guerreiro(String nome, Raca raca, Atributo atributo) {
+        super(nome, raca, atributo);
     }
 
-    public String lerLore(String filePath) {
+    public String lerLore() {
         StringBuilder lore = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ritac\\IdeaProjects\\Projeto FInal POO\\src\\Lores\\Guerreiro.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lore.append(line).append("\n");
@@ -23,5 +27,4 @@ public class Guerreiro extends Lutador {
         }
         return lore.toString();
     }
-
 }
