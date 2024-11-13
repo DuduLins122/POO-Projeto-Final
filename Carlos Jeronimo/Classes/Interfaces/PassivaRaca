@@ -1,7 +1,6 @@
 package Personagem.Interfaces;
 
 public interface PassivaRaca {
-     double habilidadePassivaRaca();
+     void habilidadePassivaRaca();
     void descricaoPassivaRaca();
 }
-
