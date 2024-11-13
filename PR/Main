@@ -137,6 +137,7 @@ public class Main {
                     case "Gnomo": selectedRace = new Gnomo(atributo); break;
                     case "Humano": selectedRace = new Humano(atributo); break;
                 }
+                selectedRace.descricaoPassivaRaca();
                 definirNomePersonagem();
             });
             panel.add(raceButton);
