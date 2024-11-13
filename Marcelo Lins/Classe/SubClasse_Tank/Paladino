@@ -1,20 +1,23 @@
 package Personagem.Roles.Tank.Subclasse;
 
+import Personagem.Atributo.Atributo;
+import Personagem.Racas.Raca;
 import Personagem.Roles.Tank.Tank;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Paladino extends Tank {
+public class Paladino extends Tank implements Serializable {
+    private static final long serialVersionUID = 25L;
 
-    public Paladino() {
-        super();
+    public Paladino(String nome, Raca raca, Atributo atributo) {
+        super(nome, raca, atributo);
     }
 
-
-    public String lerLore(String filePath) {
+    public String lerLore() {
         StringBuilder lore = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ritac\\IdeaProjects\\Projeto FInal POO\\src\\Lores\\Paladino.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lore.append(line).append("\n");
@@ -24,6 +27,4 @@ public class Paladino extends Tank {
         }
         return lore.toString();
     }
-
-
 }
