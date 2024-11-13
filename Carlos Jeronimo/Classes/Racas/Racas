@@ -1,39 +1,44 @@
-package Personagem.Racas;
+package Personagem.Racas.Humano;
 
-import Personagem.Personagem;
-import Personagem.Racas.Humano.Humano;
-import Personagem.Racas.Elfo.Elfo;
-import Personagem.Racas.Anao.Anao;
-import Personagem.Racas.Celestial.Celestial;
-import Personagem.Racas.Demoniaco.Demoniaco;
-import Personagem.Racas.Gigante.Gigante;
-import Personagem.Racas.Gnomo.Gnomo;
+import Personagem.Atributo.Atributo;
+import Personagem.Interfaces.PassivaRaca;
+import Personagem.Racas.Raca;
+import java.io.Serializable;
 
+public class Humano extends Raca implements PassivaRaca, Serializable {
+    private static final long serialVersionUID = 33L;
 
-public abstract class Raca extends Personagem {
-    private Humano humano;
-    private Elfo elfo;
-    private Anao anao;
-    private Celestial celestial;
-    private Demoniaco demoniaco;
-    private Gigante gigante;
-    private Gnomo gnomo;
+    private Atributo atributo;
 
+    public Humano(Atributo atributo) {
+        this.atributo = atributo;
+        aplicarBonusAtributos(atributo);
+    }
 
-    public Raca (Humano humano, Elfo elfo, Anao anao, Celestial celestial, Demoniaco demoniaco, Gigante gigante,
-                 Gnomo gnomo) {
-        super("");
-        this.humano = humano;
-        this.elfo = elfo;
-        this.anao = anao;
-        this.celestial = celestial;
-        this.demoniaco = demoniaco;
-        this.gigante = gigante;
-        this.gnomo = gnomo;
+    public Humano() {
+        super();
+    }
+
+    @Override
+    public void habilidadePassivaRaca() {
+        System.out.println("Raça humano concede +3 pontos em força, inteligência, constituição, carisma e sabedoria.");
 
     }
 
-    public Raca() {
-        super("");
+    @Override
+    public void descricaoPassivaRaca() {
+        System.out.println("Concede versatilidade e linguagens.");
+    }
+
+    @Override
+    public void aplicarBonusAtributos(Atributo atributo) {
+        atributo.setForca(atributo.getForca() + 3);
+        atributo.setInteligencia(atributo.getInteligencia() + 3);
+        atributo.setDefesa(atributo.getDefesa() + 3);
+        atributo.setDestreza(atributo.getDestreza() + 3);
+    }
+
+    public Atributo getAtributo() {
+        return atributo;
     }
 }
