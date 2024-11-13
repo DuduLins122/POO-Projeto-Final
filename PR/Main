@@ -3,34 +3,22 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import Personagem.Personagem;
+import Personagem.*;
 import Personagem.Atributo.Atributo;
-import Personagem.Roles.Atirador.Subclasse.DeadEye;
-import Personagem.Roles.Atirador.Subclasse.Gunner;
-import Personagem.Roles.Atirador.Subclasse.Hunter;
-import Personagem.Roles.Lutador.Subclasse.Berserker;
-import Personagem.Roles.Lutador.Subclasse.Guerreiro;
-import Personagem.Roles.Lutador.Subclasse.Monk;
-import Personagem.Roles.Mago.Subclasse.BlackMage;
-import Personagem.Roles.Mago.Subclasse.Necromancer;
-import Personagem.Roles.Mago.Subclasse.Summoner;
+import Personagem.Roles.Atirador.Subclasse.*;
+import Personagem.Roles.Lutador.Subclasse.*;
+import Personagem.Roles.Mago.Subclasse.*;
 import Personagem.Racas.*;
-import Personagem.Racas.Anao.Anao;
-import Personagem.Racas.Celestial.Celestial;
-import Personagem.Racas.Demoniaco.Demoniaco;
-import Personagem.Racas.Elfo.Elfo;
-import Personagem.Racas.Gigante.Gigante;
-import Personagem.Racas.Gnomo.Gnomo;
-import Personagem.Racas.Humano.Humano;
-import Personagem.Roles.Assassino.Subclasse.Reaper;
-import Personagem.Roles.Assassino.Subclasse.Samurai;
-import Personagem.Roles.Assassino.Subclasse.Viper;
-import Personagem.Roles.Suporte.Subclasse.Clerigo;
-import Personagem.Roles.Suporte.Subclasse.Sage;
-import Personagem.Roles.Suporte.Subclasse.WhiteMage;
-import Personagem.Roles.Tank.Subclasse.Barbaro;
-import Personagem.Roles.Tank.Subclasse.Paladino;
-import Personagem.Roles.Tank.Subclasse.Warrior;
+import Personagem.Racas.Anao.*;
+import Personagem.Racas.Celestial.*;
+import Personagem.Racas.Demoniaco.*;
+import Personagem.Racas.Elfo.*;
+import Personagem.Racas.Gigante.*;
+import Personagem.Racas.Gnomo.*;
+import Personagem.Racas.Humano.*;
+import Personagem.Roles.Assassino.Subclasse.*;
+import Personagem.Roles.Suporte.Subclasse.*;
+import Personagem.Roles.Tank.Subclasse.*;
 
 public class Main {
 
@@ -149,9 +137,6 @@ public class Main {
                     case "Gnomo": selectedRace = new Gnomo(atributo); break;
                     case "Humano": selectedRace = new Humano(atributo); break;
                 }
-
-                selectedRace.descricaoPassivaRaca();
-
                 definirNomePersonagem();
             });
             panel.add(raceButton);
@@ -321,16 +306,17 @@ public class Main {
         });
         panel.add(exibirLoreBtn);
 
-
         JButton voltarMenuBtn = new JButton("Voltar ao Menu");
-        voltarMenuBtn.addActionListener(e -> criarMenu());
+        voltarMenuBtn.addActionListener(e -> {
+            frame.dispose();
+            criarMenu();
+        });
         panel.add(voltarMenuBtn);
 
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
     }
-
     private static void exibirLore(Personagem personagem) {
         String lore = "";
         if (personagem instanceof Reaper) lore = ((Reaper) personagem).lerLore();
@@ -385,23 +371,47 @@ public class Main {
             personagemPanel.add(new JLabel("Mana: " + p.getAtributo().getMana()));
             personagemPanel.add(new JLabel("Defesa: " + p.getAtributo().getDefesa()));
 
+
             JButton removerBtn = new JButton("Remover Personagem");
             removerBtn.addActionListener(e -> {
                 Persistencia.removerPersonagem(p.getNome());
                 carregarPersonagens();
             });
-
             personagemPanel.add(removerBtn);
+
+            JButton editarNomeBtn = new JButton("Editar Nome");
+            editarNomeBtn.addActionListener(e -> {
+                JTextField novoNomeField = new JTextField(p.getNome());
+                int option = JOptionPane.showConfirmDialog(frame, novoNomeField, "Digite o novo nome:", JOptionPane.OK_CANCEL_OPTION);
+
+                if (option == JOptionPane.OK_OPTION) {
+                    String novoNome = novoNomeField.getText().trim();
+                    if (!novoNome.isEmpty() && !novoNome.equals(p.getNome())) {
+                        Persistencia.editarNomePersonagem(p.getNome(), novoNome);
+                        carregarPersonagens();
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Nome inválido ou não alterado.");
+                    }
+                }
+            });
+            personagemPanel.add(editarNomeBtn);
 
             panel.add(personagemPanel);
         }
 
         JButton voltarMenuBtn = new JButton("Voltar ao Menu");
-        voltarMenuBtn.addActionListener(e -> criarMenu());
+        voltarMenuBtn.addActionListener(e -> {
+            frame.dispose();
+            criarMenu();
+        });
         panel.add(voltarMenuBtn);
+
+
 
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
     }
+
+
 }
