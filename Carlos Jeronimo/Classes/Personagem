@@ -1,27 +1,24 @@
 package Personagem;
 
-import Personagem.Aparencia.Aparencia;
 import Personagem.Atributo.Atributo;
 import Personagem.Roles.Roles;
 import Personagem.Racas.Raca;
+import java.io.Serializable;
 
-public abstract class Personagem {
+public abstract class Personagem implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String nome;
-    private Roles roles;
+    private Roles roles; 
     private Raca raca;
-    private Aparencia aparencia;
     private Atributo atributo;
 
-
-    public Personagem(Roles roles, Raca raca, Aparencia aparencia, Atributo atributo) {
+    
+    public Personagem(String nome, Roles roles, Raca raca, Atributo atributo) {
+        this.nome = nome;
         this.roles = roles;
         this.raca = raca;
-        this.aparencia = aparencia;
         this.atributo = atributo;
-    }
-
-    public Personagem(String nome) {
-        this.nome = nome;
     }
 
     public String getNome() {
@@ -36,12 +33,30 @@ public abstract class Personagem {
         return raca;
     }
 
-    public Aparencia getAparencia() {
-        return aparencia;
-    }
-
     public Atributo getAtributo() {
         return atributo;
     }
 
+    public void setAtributo(Atributo atributo) {
+        this.atributo = atributo;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
+
+    public void exibirAtributos() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Role: " + (roles != null ? roles.getClass().getSimpleName() : "Nenhuma"));
+        System.out.println("Raça: " + (raca != null ? raca.getClass().getSimpleName() : "Nenhuma"));
+        if (atributo != null) {
+            System.out.println("Força: " + atributo.getForca());
+            System.out.println("Destreza: " + atributo.getDestreza());
+            System.out.println("Inteligência: " + atributo.getInteligencia());
+            System.out.println("Vida: " + atributo.getVida());
+            System.out.println("Mana: " + atributo.getMana());
+            System.out.println("Defesa: " + atributo.getDefesa());
+        }
+    }
 }
